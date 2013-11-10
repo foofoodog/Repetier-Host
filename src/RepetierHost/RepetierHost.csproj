@@ -645,12 +645,8 @@
   <ItemGroup>
     <Content Include="images\switch_on.bmp" />
     <Content Include="images\switch_off.bmp" />
-    <Content Include="lib\OpenTK.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="lib\OpenTK.GLControl.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="lib\OpenTK.dll" />
+    <Content Include="lib\OpenTK.GLControl.dll" />
     <Content Include="repetier-logo-trans32.ico" />
     <Content Include="repetier-logo32.ico" />
     <None Include="Properties\DataSources\Main.datasource" />

@@ -180,10 +180,34 @@ namespace RepetierHost
         private void WordirCompositionWatcher_Created(object sender, FileSystemEventArgs e)
         {
             if (!globalSettings.MonitorWorkDir) return;
-            Slicer.LoadGCode lg = Main.main.LoadGCode;
-            main.Invoke(lg, e.FullPath);
-            if (!conn.connector.IsConnected()) conn.open();
-            conn.connector.RunJob();
+            Thread.Sleep(1000); // HACK: Wait for file to unlock.
+            if (TryWaitFile(e.FullPath))
+            {
+                Slicer.LoadGCode lg = Main.main.LoadGCode;
+                main.Invoke(lg, e.FullPath);
+                if (!conn.connector.IsConnected()) conn.open();
+                conn.connector.RunJob();
+            }
+        }
+
+        private bool TryWaitFile(string file, int retries = 10, int wait = 1000)
+        {
+            for (int i = 0; i < retries; i ++)
+            {
+                try
+                {
+                    using (File.OpenRead(file))
+                    {
+                        // NOOP
+                    }
+                }
+                catch (Exception)
+                {
+                    if (i < retries) Thread.Sleep(wait);
+                    else return false;
+                }
+            }
+            return true;
         }
 
         [System.Runtime.InteropServices.DllImport("libc")]
