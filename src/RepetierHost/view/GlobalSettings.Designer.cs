@@ -45,13 +45,14 @@
             this.checkRedGreenSwitch = new System.Windows.Forms.CheckBox();
             this.checkReduceToolbarSize = new System.Windows.Forms.CheckBox();
             this.groupFileAssociations = new System.Windows.Forms.GroupBox();
-            this.checkSTL = new System.Windows.Forms.CheckBox();
-            this.checkOBJ = new System.Windows.Forms.CheckBox();
-            this.checkGCode = new System.Windows.Forms.CheckBox();
-            this.checkG = new System.Windows.Forms.CheckBox();
-            this.checkGCO = new System.Windows.Forms.CheckBox();
-            this.checkNC = new System.Windows.Forms.CheckBox();
             this.buttonAssociate = new System.Windows.Forms.Button();
+            this.checkNC = new System.Windows.Forms.CheckBox();
+            this.checkGCO = new System.Windows.Forms.CheckBox();
+            this.checkG = new System.Windows.Forms.CheckBox();
+            this.checkGCode = new System.Windows.Forms.CheckBox();
+            this.checkOBJ = new System.Windows.Forms.CheckBox();
+            this.checkSTL = new System.Windows.Forms.CheckBox();
+            this.checkMonitor = new System.Windows.Forms.CheckBox();
             this.groupFilesAndDirectories.SuspendLayout();
             this.groupBehaviour.SuspendLayout();
             this.groupGUI.SuspendLayout();
@@ -155,6 +156,7 @@
             // 
             // groupBehaviour
             // 
+            this.groupBehaviour.Controls.Add(this.checkMonitor);
             this.groupBehaviour.Controls.Add(this.checkDisableQualityReduction);
             this.groupBehaviour.Location = new System.Drawing.Point(13, 176);
             this.groupBehaviour.Name = "groupBehaviour";
@@ -221,53 +223,25 @@
             this.groupFileAssociations.TabStop = false;
             this.groupFileAssociations.Text = "File Associations";
             // 
-            // checkSTL
+            // buttonAssociate
             // 
-            this.checkSTL.AutoSize = true;
-            this.checkSTL.Checked = true;
-            this.checkSTL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkSTL.Location = new System.Drawing.Point(13, 20);
-            this.checkSTL.Name = "checkSTL";
-            this.checkSTL.Size = new System.Drawing.Size(39, 17);
-            this.checkSTL.TabIndex = 0;
-            this.checkSTL.Text = ".stl";
-            this.checkSTL.UseVisualStyleBackColor = true;
+            this.buttonAssociate.Location = new System.Drawing.Point(372, 20);
+            this.buttonAssociate.Name = "buttonAssociate";
+            this.buttonAssociate.Size = new System.Drawing.Size(140, 23);
+            this.buttonAssociate.TabIndex = 1;
+            this.buttonAssociate.Text = "Associate Extensions";
+            this.buttonAssociate.UseVisualStyleBackColor = true;
+            this.buttonAssociate.Click += new System.EventHandler(this.buttonAssociate_Click);
             // 
-            // checkOBJ
+            // checkNC
             // 
-            this.checkOBJ.AutoSize = true;
-            this.checkOBJ.Checked = true;
-            this.checkOBJ.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkOBJ.Location = new System.Drawing.Point(13, 43);
-            this.checkOBJ.Name = "checkOBJ";
-            this.checkOBJ.Size = new System.Drawing.Size(43, 17);
-            this.checkOBJ.TabIndex = 0;
-            this.checkOBJ.Text = ".obj";
-            this.checkOBJ.UseVisualStyleBackColor = true;
-            // 
-            // checkGCode
-            // 
-            this.checkGCode.AutoSize = true;
-            this.checkGCode.Checked = true;
-            this.checkGCode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkGCode.Location = new System.Drawing.Point(80, 20);
-            this.checkGCode.Name = "checkGCode";
-            this.checkGCode.Size = new System.Drawing.Size(59, 17);
-            this.checkGCode.TabIndex = 0;
-            this.checkGCode.Text = ".gcode";
-            this.checkGCode.UseVisualStyleBackColor = true;
-            // 
-            // checkG
-            // 
-            this.checkG.AutoSize = true;
-            this.checkG.Checked = true;
-            this.checkG.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkG.Location = new System.Drawing.Point(159, 20);
-            this.checkG.Name = "checkG";
-            this.checkG.Size = new System.Drawing.Size(35, 17);
-            this.checkG.TabIndex = 0;
-            this.checkG.Text = ".g";
-            this.checkG.UseVisualStyleBackColor = true;
+            this.checkNC.AutoSize = true;
+            this.checkNC.Location = new System.Drawing.Point(159, 43);
+            this.checkNC.Name = "checkNC";
+            this.checkNC.Size = new System.Drawing.Size(41, 17);
+            this.checkNC.TabIndex = 0;
+            this.checkNC.Text = ".nc";
+            this.checkNC.UseVisualStyleBackColor = true;
             // 
             // checkGCO
             // 
@@ -281,25 +255,63 @@
             this.checkGCO.Text = ".gco";
             this.checkGCO.UseVisualStyleBackColor = true;
             // 
-            // checkNC
+            // checkG
             // 
-            this.checkNC.AutoSize = true;
-            this.checkNC.Location = new System.Drawing.Point(159, 43);
-            this.checkNC.Name = "checkNC";
-            this.checkNC.Size = new System.Drawing.Size(41, 17);
-            this.checkNC.TabIndex = 0;
-            this.checkNC.Text = ".nc";
-            this.checkNC.UseVisualStyleBackColor = true;
+            this.checkG.AutoSize = true;
+            this.checkG.Checked = true;
+            this.checkG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkG.Location = new System.Drawing.Point(159, 20);
+            this.checkG.Name = "checkG";
+            this.checkG.Size = new System.Drawing.Size(35, 17);
+            this.checkG.TabIndex = 0;
+            this.checkG.Text = ".g";
+            this.checkG.UseVisualStyleBackColor = true;
             // 
-            // buttonAssociate
+            // checkGCode
             // 
-            this.buttonAssociate.Location = new System.Drawing.Point(372, 20);
-            this.buttonAssociate.Name = "buttonAssociate";
-            this.buttonAssociate.Size = new System.Drawing.Size(140, 23);
-            this.buttonAssociate.TabIndex = 1;
-            this.buttonAssociate.Text = "Associate Extensions";
-            this.buttonAssociate.UseVisualStyleBackColor = true;
-            this.buttonAssociate.Click += new System.EventHandler(this.buttonAssociate_Click);
+            this.checkGCode.AutoSize = true;
+            this.checkGCode.Checked = true;
+            this.checkGCode.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkGCode.Location = new System.Drawing.Point(80, 20);
+            this.checkGCode.Name = "checkGCode";
+            this.checkGCode.Size = new System.Drawing.Size(59, 17);
+            this.checkGCode.TabIndex = 0;
+            this.checkGCode.Text = ".gcode";
+            this.checkGCode.UseVisualStyleBackColor = true;
+            // 
+            // checkOBJ
+            // 
+            this.checkOBJ.AutoSize = true;
+            this.checkOBJ.Checked = true;
+            this.checkOBJ.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkOBJ.Location = new System.Drawing.Point(13, 43);
+            this.checkOBJ.Name = "checkOBJ";
+            this.checkOBJ.Size = new System.Drawing.Size(43, 17);
+            this.checkOBJ.TabIndex = 0;
+            this.checkOBJ.Text = ".obj";
+            this.checkOBJ.UseVisualStyleBackColor = true;
+            // 
+            // checkSTL
+            // 
+            this.checkSTL.AutoSize = true;
+            this.checkSTL.Checked = true;
+            this.checkSTL.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkSTL.Location = new System.Drawing.Point(13, 20);
+            this.checkSTL.Name = "checkSTL";
+            this.checkSTL.Size = new System.Drawing.Size(39, 17);
+            this.checkSTL.TabIndex = 0;
+            this.checkSTL.Text = ".stl";
+            this.checkSTL.UseVisualStyleBackColor = true;
+            // 
+            // checkMonitor
+            // 
+            this.checkMonitor.AutoSize = true;
+            this.checkMonitor.Location = new System.Drawing.Point(305, 19);
+            this.checkMonitor.Name = "checkMonitor";
+            this.checkMonitor.Size = new System.Drawing.Size(204, 17);
+            this.checkMonitor.TabIndex = 1;
+            this.checkMonitor.Text = "Monitor work directory for composition";
+            this.checkMonitor.UseVisualStyleBackColor = true;
             // 
             // GlobalSettings
             // 
@@ -358,6 +370,7 @@
         private System.Windows.Forms.CheckBox checkGCode;
         private System.Windows.Forms.CheckBox checkOBJ;
         private System.Windows.Forms.CheckBox checkSTL;
+        private System.Windows.Forms.CheckBox checkMonitor;
 
     }
 }

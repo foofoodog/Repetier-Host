@@ -161,6 +161,31 @@ namespace RepetierHost
             //splitInfoEdit.SplitterDistance = (splitInfoEdit.Width - splitInfoEdit.Panel2MinSize);
          * */
         }
+
+        /// <summary>
+        /// Monitors work dir for composition gcode and when created connects and prints.
+        /// </summary>
+        private void MonitorWordirComposition()
+        {
+            var workdir = (string)repetierKey.GetValue("workdir");
+            var wordirCompositionWatcher = new FileSystemWatcher(workdir, "composition.gcode") { EnableRaisingEvents = true };
+            wordirCompositionWatcher.Created += WordirCompositionWatcher_Created;
+        }
+
+        /// <summary>
+        /// Load composition gcode connect and print.
+        /// </summary>
+        /// <param name="sender">FileSystemWatcher</param>
+        /// <param name="e">FileSystemEventArgs</param>
+        private void WordirCompositionWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            if (!globalSettings.MonitorWorkDir) return;
+            Slicer.LoadGCode lg = Main.main.LoadGCode;
+            main.Invoke(lg, e.FullPath);
+            if (!conn.connector.IsConnected()) conn.open();
+            conn.connector.RunJob();
+        }
+
         [System.Runtime.InteropServices.DllImport("libc")]
         static extern int uname(IntPtr buf);
         public Main()
@@ -394,6 +419,7 @@ namespace RepetierHost
             //everything done.  Now look at command line
             ProcessCommandLine();
             snapshotToolStripMenuItem.Visible = false;
+            MonitorWordirComposition();
         }
         internal static class NativeMethods
         {
