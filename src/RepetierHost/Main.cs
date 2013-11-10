@@ -180,7 +180,6 @@ namespace RepetierHost
         private void WordirCompositionWatcher_Created(object sender, FileSystemEventArgs e)
         {
             if (!globalSettings.MonitorWorkDir) return;
-            Thread.Sleep(1000); // HACK: Wait for file to unlock.
             if (TryWaitFile(e.FullPath))
             {
                 Slicer.LoadGCode lg = Main.main.LoadGCode;
