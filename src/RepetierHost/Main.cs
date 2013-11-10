@@ -169,7 +169,7 @@ namespace RepetierHost
         {
             var workdir = (string)repetierKey.GetValue("workdir");
             var wordirCompositionWatcher = new FileSystemWatcher(workdir, "composition.gcode") { EnableRaisingEvents = true };
-            wordirCompositionWatcher.Created += WordirCompositionWatcher_Created;
+            wordirCompositionWatcher.Created += WorkdirCompositionWatcher_Created;
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace RepetierHost
         /// </summary>
         /// <param name="sender">FileSystemWatcher</param>
         /// <param name="e">FileSystemEventArgs</param>
-        private void WordirCompositionWatcher_Created(object sender, FileSystemEventArgs e)
+        private void WorkdirCompositionWatcher_Created(object sender, FileSystemEventArgs e)
         {
             if (!globalSettings.MonitorWorkDir) return;
             if (TryWaitFile(e.FullPath))
