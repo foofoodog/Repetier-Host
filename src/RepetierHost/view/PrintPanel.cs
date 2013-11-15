@@ -951,5 +951,19 @@ namespace RepetierHost.view
             con.injectManualCommand("T" + comboExtruder.SelectedIndex);
         }
 
-     }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Up | Keys.Control))
+            {
+                buttonRetract_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.Down | Keys.Control))
+            {
+                buttonExtrude_Click(null, null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+    }
 }
